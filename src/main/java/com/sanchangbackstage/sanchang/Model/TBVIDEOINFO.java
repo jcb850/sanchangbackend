@@ -10,7 +10,6 @@ public class TBVIDEOINFO {
     @Id
     @GeneratedValue
     private int VIDEOID;
-
     private String VIDEONAME;
     private String VIDEOCONTENT;
     private String VIDEOPATH;

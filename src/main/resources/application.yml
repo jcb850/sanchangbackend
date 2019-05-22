@@ -1,4 +1,6 @@
 spring:
+  profiles:
+    active: dev
   datasource:
     driver-class-name: oracle.jdbc.OracleDriver
     url: jdbc:oracle:thin:@58.155.47.108:1521:orcl
@@ -8,3 +10,5 @@ spring:
     hibernate:
       ddl-auto: update
     show-sql: true
+
+

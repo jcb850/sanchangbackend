@@ -16,24 +16,24 @@ import java.io.IOException;
 public class video {
 
 
-    @PostMapping(value = "/video")
-    public String videoUpload(@RequestParam(value = "file") MultipartFile file){
-
-        if (file.isEmpty()){
-            return "上传了空文件";
-        }else {
-            String path = "D:\\FileOutputDir\\"+file.getOriginalFilename();
-            File desFile = new File(path);
-            if (!desFile.getParentFile().exists()){
-                desFile.mkdir();
-            }else {
-                try {
-                    file.transferTo(desFile);
-                } catch (IOException e) {
-                    return "上传出现错误";
-                }
-            }
-            return path;
-        }
-    }
+//    @PostMapping(value = "/video")
+//    public String videoUpload(@RequestParam(value = "file") MultipartFile file){
+//
+//        if (file.isEmpty()){
+//            return "上传了空文件";
+//        }else {
+//            String path = "D:\\FileOutputDir\\"+file.getOriginalFilename();
+//            File desFile = new File(path);
+//            if (!desFile.getParentFile().exists()){
+//                desFile.mkdir();
+//            }else {
+//                try {
+//                    file.transferTo(desFile);
+//                } catch (IOException e) {
+//                    return "上传出现错误";
+//                }
+//            }
+//            return path;
+//        }
+//    }
 }
