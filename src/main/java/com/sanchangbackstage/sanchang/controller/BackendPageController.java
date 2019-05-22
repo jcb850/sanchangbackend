@@ -1,6 +1,7 @@
 package com.sanchangbackstage.sanchang.controller;
 
 import com.sanchangbackstage.sanchang.Model.*;
+import com.sanchangbackstage.sanchang.Model.Interface.TBTERPEOPLEINTERFACE;
 import com.sanchangbackstage.sanchang.service.BackendPage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -41,6 +42,9 @@ public class BackendPageController {
     @Autowired
     public TBPEOPLEINFOINTERFACE tbpeopleinfointerface;
 
+    @Autowired
+    public TBTERPEOPLEINTERFACE tbterpeopleinterface;
+
 //    public BackendPage backendPageService = new BackendPage();
     //      上传视频
 //    @PostMapping(value = "/uploadVideo")
@@ -71,40 +75,48 @@ public class BackendPageController {
     }
 
 
-//      获得所有视频
+//获得所有视频
     @GetMapping(value = "/getAllVideo")
     public List<TBVIDEOINFO> getAllVideo(){
        return tbvideoinfointerface.findAll();
     }
-//      获得指定id的视频
+    //获得指定id的视频
     @GetMapping(value = "/getVideoById/{id}")
     public TBVIDEOINFO getVideoById(@PathVariable(value = "id") Integer id){
         return tbvideoinfointerface.findById(id).get();
     }
 
 
-//      获得所有文章
+    //获得所有文章
     @GetMapping(value = "/getAllText")
     public List<TBTEXTIMAGE> getAllText(){
         return tbtextimageinterface.findAll();
     }
-//    获得指定id的文章
+    //获得指定id的文章
     @GetMapping(value = "/getTextAndImgById/{id}")
     public TBTEXTIMAGE getTextAndImgById(@PathVariable(value = "id") int id){
         return tbtextimageinterface.findById(id).get();
     }
 
-
-    //TODO:模型类应该是有问题，需要去修复
-//获得所有人员关系
+    //获得所有人员
     @GetMapping(value = "/getAllPeopleInfo")
     public List<TBPEOPLEINFO>getallPeopleInfo(){
         return tbpeopleinfointerface.findAll();
     }
-//    根据id获取所有人员关系
+    //根据id获取人员
     @GetMapping(value = "/getPeoPleById/{id}")
-    public TBPEOPLEINFO getPeopleById(@PathVariable(value = "id") int id){
+    public TBPEOPLEINFO getPeopleById(@PathVariable(value = "id") String id){
         return tbpeopleinfointerface.findById(id).get();
     }
-    //TODO：到此为止
+    //获得所有人员关系
+    @GetMapping(value = "/getAllInterPeople")
+    public List<TBINTERPEOPLE> getAllInterPeople(){
+        return tbterpeopleinterface.findAll();
+    }
+    //根据id获得人员关系
+    @GetMapping(value = "/getInterPeopleById/{id}")
+    public TBINTERPEOPLE getInterPeopleById(@PathVariable(value = "id") String id){
+        return tbterpeopleinterface.findById(id).get();
+    }
+
 }
