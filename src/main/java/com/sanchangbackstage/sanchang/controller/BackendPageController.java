@@ -95,7 +95,7 @@ public class BackendPageController {
     }
 
 
-    //TODO:模型类应该是有问题，需要去修复
+
 //获得所有人员关系
     @GetMapping(value = "/getAllPeopleInfo")
     public List<TBPEOPLEINFO>getallPeopleInfo(){
@@ -103,8 +103,8 @@ public class BackendPageController {
     }
 //    根据id获取所有人员关系
     @GetMapping(value = "/getPeoPleById/{id}")
-    public TBPEOPLEINFO getPeopleById(@PathVariable(value = "id") int id){
+    public TBPEOPLEINFO getPeopleById(@PathVariable(value = "id") String id){
         return tbpeopleinfointerface.findById(id).get();
     }
-    //TODO：到此为止
+
 }

@@ -4,7 +4,7 @@ spring:
   datasource:
     driver-class-name: oracle.jdbc.OracleDriver
     url: jdbc:oracle:thin:@58.155.47.108:1521:orcl
-    username: scott
+    username: Scott
     password: 123456
   jpa:
     hibernate:
