@@ -4,6 +4,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
+import java.util.Date;
+
 @Entity
 public class TBVIDEOINFO {
 
@@ -13,9 +15,9 @@ public class TBVIDEOINFO {
     private String VIDEONAME;
     private String VIDEOCONTENT;
     private String VIDEOPATH;
-    private String VIDEOPLAYSUM;
-    private String PRAISESUM;
-    private String VIDEODATE;
+    private int VIDEOPLAYSUM;
+    private int PRAISESUM;
+    private Date VIDEODATE;
     private String VIDEOFLAG;
 
 
@@ -54,27 +56,27 @@ public class TBVIDEOINFO {
         this.VIDEOPATH = VIDEOPATH;
     }
 
-    public String getVIDEOPLAYSUM() {
+    public int getVIDEOPLAYSUM() {
         return VIDEOPLAYSUM;
     }
 
-    public void setVIDEOPLAYSUM(String VIDEOPLAYSUM) {
+    public void setVIDEOPLAYSUM(int VIDEOPLAYSUM) {
         this.VIDEOPLAYSUM = VIDEOPLAYSUM;
     }
 
-    public String getPRAISESUM() {
+    public int getPRAISESUM() {
         return PRAISESUM;
     }
 
-    public void setPRAISESUM(String PRAISESUM) {
+    public void setPRAISESUM(int PRAISESUM) {
         this.PRAISESUM = PRAISESUM;
     }
 
-    public String getVIDEODATE() {
+    public Date getVIDEODATE() {
         return VIDEODATE;
     }
 
-    public void setVIDEODATE(String VIDEODATE) {
+    public void setVIDEODATE(Date VIDEODATE) {
         this.VIDEODATE = VIDEODATE;
     }
 

@@ -1,6 +1,7 @@
 package com.sanchangbackstage.sanchang.controller;
 
 import com.sanchangbackstage.sanchang.Model.*;
+import com.sanchangbackstage.sanchang.Model.Interface.TBINTERPEOPLEINTERFACE;
 import com.sanchangbackstage.sanchang.service.BackendPage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -10,9 +11,11 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.MultipartConfigElement;
+import javax.websocket.server.PathParam;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @RestController
@@ -40,6 +43,9 @@ public class BackendPageController {
 
     @Autowired
     public TBPEOPLEINFOINTERFACE tbpeopleinfointerface;
+
+    @Autowired
+    public TBINTERPEOPLEINTERFACE tbinterpeopleinterface;
 
 //    public BackendPage backendPageService = new BackendPage();
     //      上传视频
@@ -81,10 +87,35 @@ public class BackendPageController {
     public TBVIDEOINFO getVideoById(@PathVariable(value = "id") Integer id){
         return tbvideoinfointerface.findById(id).get();
     }
+    //添加一条视频
+    @PostMapping(value = "/uploadVideo")
+    public void uploadVideo(@RequestParam(value = "file") MultipartFile file,
+                            @RequestParam(value = "videoContent")String videoContent,
+                            @RequestParam(value = "videoName")String videoName
+                            ){
+        String path = this.videoUpload(file);
+        TBVIDEOINFO tbvideoinfo = new TBVIDEOINFO();
+        tbvideoinfo.setPRAISESUM(0);
+        tbvideoinfo.setVIDEOCONTENT(videoContent);
+        tbvideoinfo.setVIDEONAME(videoName);
+        tbvideoinfo.setVIDEOPATH(path);
+        tbvideoinfo.setVIDEOPLAYSUM(0);
+        tbvideoinfo.setVIDEODATE(new Date());
+        tbvideoinfo.setVIDEOFLAG("视频");
+    }
+    //删除视频
+    @PostMapping(value = "/deleteVideo/{id}")
+    public void deleteVideo(@PathVariable(value = "id")int id){
+        TBVIDEOINFO tbvideoinfo = new TBVIDEOINFO();
+        tbvideoinfo.setVIDEOID(id);
+        tbvideoinfointerface.delete(tbvideoinfo);
+
+    }
+
 
 
 //      获得所有文章
-    @GetMapping(value = "/getAllText")
+    @GetMapping(value = "/getAllTextAndImg")
     public List<TBTEXTIMAGE> getAllText(){
         return tbtextimageinterface.findAll();
     }
@@ -93,18 +124,78 @@ public class BackendPageController {
     public TBTEXTIMAGE getTextAndImgById(@PathVariable(value = "id") int id){
         return tbtextimageinterface.findById(id).get();
     }
+    //添加文章
+    @PostMapping(value = "/addTextAndImg")
+    public void addTextAndImg(@RequestParam(value = "name")String name,
+                              @RequestParam(value = "content")String content,
+                              @RequestParam(value = "flag")String flag,
+                              @RequestParam(value = "img",required = false)MultipartFile img){
+        TBTEXTIMAGE tbtextimage = new TBTEXTIMAGE();
+        tbtextimage.setTINAME(name);
+        tbtextimage.setTIDATE(new Date());
+        if(flag.equals("图片")){
+            String path = this.videoUpload(img);
+            tbtextimage.setTIPATH(path);
+        }else {
+            tbtextimage.setTIPATH("");
+        }
+
+        tbtextimage.setTICONTENT(content);
+        tbtextimage.setTIFLAG(flag);
+        tbtextimage.setTIPRAISESUM(0);
+        tbtextimage.setTIVISITSUM(0);
+        tbtextimageinterface.save(tbtextimage);
+    }
+//删除图文
+    @PostMapping(value = "/deleteTextAndImg/{id}")
+    public void deleteTextAndImg(@PathVariable(value = "id")int id){
+        TBTEXTIMAGE tbtextimage = new TBTEXTIMAGE();
+        tbtextimage.setTIID(id);
+        tbtextimageinterface.delete(tbtextimage);
+    }
+    //修改图文
+    @PostMapping(value = "/updateTextAndImg")
+    public void updateTextAndImg(@RequestParam(value = "id")String id,
+                                 @RequestParam(value = "name",required = false)String name,
+                                 @RequestParam(value = "content",required = false)String content,
+                                 @RequestParam(value = "praisesum",required = false)String praisesum,
+                                 @RequestParam(value = "visit",required = false)String visit){
+        TBTEXTIMAGE tbtextimageOld = this.getTextAndImgById(Integer.parseInt(id));
+        TBTEXTIMAGE tbtextimage = new TBTEXTIMAGE();
+        tbtextimage.setTIID(Integer.parseInt(id));
+        tbtextimage.setTINAME(name==""?null:name);
+        tbtextimage.setTICONTENT(content==""?null:content);
+
+        tbtextimage.setTIPRAISESUM(praisesum==""?tbtextimageOld.getTIPRAISESUM():Integer.parseInt(praisesum));
+        tbtextimage.setTIVISITSUM(visit==""?tbtextimageOld.getTIVISITSUM():Integer.parseInt(visit));
+        tbtextimageinterface.save(tbtextimage);
+
+    }
 
 
 
-//获得所有人员关系
+//获得所有人员
     @GetMapping(value = "/getAllPeopleInfo")
     public List<TBPEOPLEINFO>getallPeopleInfo(){
         return tbpeopleinfointerface.findAll();
     }
-//    根据id获取所有人员关系
+//    根据id获取人员
     @GetMapping(value = "/getPeoPleById/{id}")
     public TBPEOPLEINFO getPeopleById(@PathVariable(value = "id") String id){
         return tbpeopleinfointerface.findById(id).get();
     }
+
+    //获得所有关系
+    @GetMapping(value = "/getAllPeopleInter")
+    public List<TBINTERPEOPLE> getAllPeopleInter(){
+        return tbinterpeopleinterface.findAll();
+    }
+
+    @GetMapping(value = "/getPeopleInterById/{id}")
+    public TBINTERPEOPLE getPeopleInterById(@PathVariable(value = "id") String id){
+        return tbinterpeopleinterface.findById(id).get();
+    }
+
+
 
 }

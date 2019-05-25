@@ -3,6 +3,7 @@ package com.sanchangbackstage.sanchang.Model;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import java.util.Date;
 
 @Entity
 public class TBTEXTIMAGE {
@@ -15,12 +16,12 @@ public class TBTEXTIMAGE {
     private int TIID;
 
     private String TINAME;
-    private String TIDATE;
+    private Date TIDATE;
     private String TIPATH;
     private String TICONTENT;
     private String TIFLAG;
-    private String TIPRAISESUM;
-    private String TIVISITSUM;
+    private int TIPRAISESUM;
+    private int TIVISITSUM;
 
     public int getTIID() {
         return TIID;
@@ -38,11 +39,11 @@ public class TBTEXTIMAGE {
         this.TINAME = TINAME;
     }
 
-    public String getTIDATE() {
+    public Date getTIDATE() {
         return TIDATE;
     }
 
-    public void setTIDATE(String TIDATE) {
+    public void setTIDATE(Date TIDATE) {
         this.TIDATE = TIDATE;
     }
 
@@ -70,19 +71,19 @@ public class TBTEXTIMAGE {
         this.TIFLAG = TIFLAG;
     }
 
-    public String getTIPRAISESUM() {
+    public int getTIPRAISESUM() {
         return TIPRAISESUM;
     }
 
-    public void setTIPRAISESUM(String TIPRAISESUM) {
+    public void setTIPRAISESUM(int TIPRAISESUM) {
         this.TIPRAISESUM = TIPRAISESUM;
     }
 
-    public String getTIVISITSUM() {
+    public int getTIVISITSUM() {
         return TIVISITSUM;
     }
 
-    public void setTIVISITSUM(String TIVISITSUM) {
+    public void setTIVISITSUM(int TIVISITSUM) {
         this.TIVISITSUM = TIVISITSUM;
     }
 }
