@@ -1,7 +1,9 @@
 package com.sanchangbackstage.sanchang.controller;
 
+import com.sanchangbackstage.sanchang.HTTPmessage.Message;
 import com.sanchangbackstage.sanchang.Model.*;
 import com.sanchangbackstage.sanchang.Model.Interface.TBINTERPEOPLEINTERFACE;
+import com.sanchangbackstage.sanchang.StatusMessage.StatusMessage;
 import com.sanchangbackstage.sanchang.service.BackendPage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -31,6 +33,8 @@ public class BackendPageController {
         factory.setMaxRequestSize("102400KB");
         return factory.createMultipartConfig();
     }
+
+
 
     @Value(value = "${baseUrl}")
     public String baseUrl;
@@ -79,8 +83,10 @@ public class BackendPageController {
 
 //      获得所有视频
     @GetMapping(value = "/getAllVideo")
-    public List<TBVIDEOINFO> getAllVideo(){
-       return tbvideoinfointerface.findAll();
+    public StatusMessage getAllVideo(){
+        StatusMessage statusMessage = new StatusMessage();
+        statusMessage.setData(tbvideoinfointerface.findAll());
+       return statusMessage;
     }
 //      获得指定id的视频
     @GetMapping(value = "/getVideoById/{id}")
@@ -89,19 +95,28 @@ public class BackendPageController {
     }
     //添加一条视频
     @PostMapping(value = "/uploadVideo")
-    public void uploadVideo(@RequestParam(value = "file") MultipartFile file,
-                            @RequestParam(value = "videoContent")String videoContent,
-                            @RequestParam(value = "videoName")String videoName
+    public Message uploadVideo(@RequestParam(value = "file") MultipartFile file,
+                               @RequestParam(value = "videoContent")String videoContent,
+                               @RequestParam(value = "videoName")String videoName
                             ){
-        String path = this.videoUpload(file);
-        TBVIDEOINFO tbvideoinfo = new TBVIDEOINFO();
-        tbvideoinfo.setPRAISESUM(0);
-        tbvideoinfo.setVIDEOCONTENT(videoContent);
-        tbvideoinfo.setVIDEONAME(videoName);
-        tbvideoinfo.setVIDEOPATH(path);
-        tbvideoinfo.setVIDEOPLAYSUM(0);
-        tbvideoinfo.setVIDEODATE(new Date());
-        tbvideoinfo.setVIDEOFLAG("视频");
+        Message message = new Message();
+        try {
+            String path = this.videoUpload(file);
+            TBVIDEOINFO tbvideoinfo = new TBVIDEOINFO();
+            tbvideoinfo.setPRAISESUM(0);
+            tbvideoinfo.setVIDEOCONTENT(videoContent);
+            tbvideoinfo.setVIDEONAME(videoName);
+            tbvideoinfo.setVIDEOPATH(path);
+            tbvideoinfo.setVIDEOPLAYSUM(0);
+            tbvideoinfo.setVIDEODATE(new Date());
+            tbvideoinfo.setVIDEOFLAG("视频");
+            message.message="视频添加成功！";
+        }catch (Exception e){
+            message.message=e.toString();
+        }
+
+
+        return message;
     }
     //删除视频
     @PostMapping(value = "/deleteVideo/{id}")
@@ -109,7 +124,6 @@ public class BackendPageController {
         TBVIDEOINFO tbvideoinfo = new TBVIDEOINFO();
         tbvideoinfo.setVIDEOID(id);
         tbvideoinfointerface.delete(tbvideoinfo);
-
     }
 
 
@@ -126,25 +140,33 @@ public class BackendPageController {
     }
     //添加文章
     @PostMapping(value = "/addTextAndImg")
-    public void addTextAndImg(@RequestParam(value = "name")String name,
+    public StatusMessage addTextAndImg(@RequestParam(value = "name")String name,
                               @RequestParam(value = "content")String content,
                               @RequestParam(value = "flag")String flag,
                               @RequestParam(value = "img",required = false)MultipartFile img){
-        TBTEXTIMAGE tbtextimage = new TBTEXTIMAGE();
-        tbtextimage.setTINAME(name);
-        tbtextimage.setTIDATE(new Date());
-        if(flag.equals("图片")){
-            String path = this.videoUpload(img);
-            tbtextimage.setTIPATH(path);
-        }else {
-            tbtextimage.setTIPATH("");
-        }
+        StatusMessage statusMessage;
+        try {
+            TBTEXTIMAGE tbtextimage = new TBTEXTIMAGE();
+            tbtextimage.setTINAME(name);
+            tbtextimage.setTIDATE(new Date());
+            if(flag.equals("图片")){
+                String path = this.videoUpload(img);
+                tbtextimage.setTIPATH(path);
+            }else {
+                tbtextimage.setTIPATH("");
+            }
 
-        tbtextimage.setTICONTENT(content);
-        tbtextimage.setTIFLAG(flag);
-        tbtextimage.setTIPRAISESUM(0);
-        tbtextimage.setTIVISITSUM(0);
-        tbtextimageinterface.save(tbtextimage);
+            tbtextimage.setTICONTENT(content);
+            tbtextimage.setTIFLAG(flag);
+            tbtextimage.setTIPRAISESUM(0);
+            tbtextimage.setTIVISITSUM(0);
+            tbtextimageinterface.save(tbtextimage);
+            statusMessage = new StatusMessage();
+        }catch (Exception e){
+            statusMessage = new StatusMessage(e.toString());
+        }
+        return statusMessage;
+
     }
 //删除图文
     @PostMapping(value = "/deleteTextAndImg/{id}")
@@ -184,17 +206,59 @@ public class BackendPageController {
     public TBPEOPLEINFO getPeopleById(@PathVariable(value = "id") String id){
         return tbpeopleinfointerface.findById(id).get();
     }
+    //添加一个人员
+    @PostMapping(value = "/addPeopleInfo")
+    public void addPeopleInfo(@RequestBody()TBPEOPLEINFO tbpeopleinfo){
+
+        tbpeopleinfointerface.save(tbpeopleinfo);
+
+    }
+    @PostMapping(value = "/deletePeopleInfo/{id}")
+    public StatusMessage deletePeopleInfo(@PathVariable(value = "id")String id){
+        try {
+            TBPEOPLEINFO tbpeopleinfo = new TBPEOPLEINFO();
+            tbpeopleinfo.setID(id);
+            tbpeopleinfointerface.delete(tbpeopleinfo);
+        }catch (Exception e){
+            return new StatusMessage(e.toString());
+        }
+        return new StatusMessage();
+    }
 
     //获得所有关系
     @GetMapping(value = "/getAllPeopleInter")
     public List<TBINTERPEOPLE> getAllPeopleInter(){
         return tbinterpeopleinterface.findAll();
     }
-
+//查询单个人员关系
     @GetMapping(value = "/getPeopleInterById/{id}")
     public TBINTERPEOPLE getPeopleInterById(@PathVariable(value = "id") String id){
         return tbinterpeopleinterface.findById(id).get();
     }
+//添加一个人员关系
+    @PostMapping(value = "/addPeopleInter")
+    public StatusMessage addPeopleInter(@RequestBody()TBINTERPEOPLE tbinterpeople){
+        try {
+            tbinterpeopleinterface.save(tbinterpeople);
+        }catch (Exception e){
+            return new StatusMessage(e.toString());
+        }
+        return new StatusMessage();
+
+    }
+    @PostMapping(value = "/deletePeopleInter/{id}")
+    public StatusMessage deletePeopleInter(@PathVariable(value = "id")String id){
+        try {
+            TBINTERPEOPLE tbinterpeople = new TBINTERPEOPLE();
+
+        }catch (Exception e){
+            return new StatusMessage(e.toString());
+        }
+        return new StatusMessage();
+
+    }
+
+
 
 
 
