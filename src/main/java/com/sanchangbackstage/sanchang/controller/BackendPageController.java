@@ -2,9 +2,9 @@ package com.sanchangbackstage.sanchang.controller;
 
 import com.sanchangbackstage.sanchang.HTTPmessage.Message;
 import com.sanchangbackstage.sanchang.Model.*;
+import com.sanchangbackstage.sanchang.Model.Interface.TBADMINISTRATORSINTERFACE;
 import com.sanchangbackstage.sanchang.Model.Interface.TBINTERPEOPLEINTERFACE;
 import com.sanchangbackstage.sanchang.StatusMessage.StatusMessage;
-import com.sanchangbackstage.sanchang.service.BackendPage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.web.servlet.MultipartConfigFactory;
@@ -13,10 +13,8 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.MultipartConfigElement;
-import javax.websocket.server.PathParam;
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -51,6 +49,10 @@ public class BackendPageController {
     @Autowired
     public TBINTERPEOPLEINTERFACE tbinterpeopleinterface;
 
+
+
+
+
 //    public BackendPage backendPageService = new BackendPage();
     //      上传视频
 //    @PostMapping(value = "/uploadVideo")
@@ -81,14 +83,14 @@ public class BackendPageController {
     }
 
 
-//      获得所有视频
+    //获得所有视频
     @GetMapping(value = "/getAllVideo")
     public StatusMessage getAllVideo(){
         StatusMessage statusMessage = new StatusMessage();
         statusMessage.setData(tbvideoinfointerface.findAll());
        return statusMessage;
     }
-//      获得指定id的视频
+    //获得指定id的视频
     @GetMapping(value = "/getVideoById/{id}")
     public TBVIDEOINFO getVideoById(@PathVariable(value = "id") Integer id){
         return tbvideoinfointerface.findById(id).get();
@@ -128,16 +130,18 @@ public class BackendPageController {
 
 
 
-//      获得所有文章
+    //获得所有文章
     @GetMapping(value = "/getAllTextAndImg")
     public List<TBTEXTIMAGE> getAllText(){
         return tbtextimageinterface.findAll();
     }
-//    获得指定id的文章
+
+    //获得指定id的文章
     @GetMapping(value = "/getTextAndImgById/{id}")
     public TBTEXTIMAGE getTextAndImgById(@PathVariable(value = "id") int id){
         return tbtextimageinterface.findById(id).get();
     }
+
     //添加文章
     @PostMapping(value = "/addTextAndImg")
     public StatusMessage addTextAndImg(@RequestParam(value = "name")String name,
@@ -168,7 +172,7 @@ public class BackendPageController {
         return statusMessage;
 
     }
-//删除图文
+    //删除图文
     @PostMapping(value = "/deleteTextAndImg/{id}")
     public void deleteTextAndImg(@PathVariable(value = "id")int id){
         TBTEXTIMAGE tbtextimage = new TBTEXTIMAGE();
@@ -196,16 +200,18 @@ public class BackendPageController {
 
 
 
-//获得所有人员
+    //获得所有人员
     @GetMapping(value = "/getAllPeopleInfo")
     public List<TBPEOPLEINFO>getallPeopleInfo(){
         return tbpeopleinfointerface.findAll();
     }
-//    根据id获取人员
+
+    //根据id获取人员
     @GetMapping(value = "/getPeoPleById/{id}")
     public TBPEOPLEINFO getPeopleById(@PathVariable(value = "id") String id){
         return tbpeopleinfointerface.findById(id).get();
     }
+
     //添加一个人员
     @PostMapping(value = "/addPeopleInfo")
     public void addPeopleInfo(@RequestBody()TBPEOPLEINFO tbpeopleinfo){
@@ -213,6 +219,7 @@ public class BackendPageController {
         tbpeopleinfointerface.save(tbpeopleinfo);
 
     }
+
     @PostMapping(value = "/deletePeopleInfo/{id}")
     public StatusMessage deletePeopleInfo(@PathVariable(value = "id")String id){
         try {
@@ -230,12 +237,14 @@ public class BackendPageController {
     public List<TBINTERPEOPLE> getAllPeopleInter(){
         return tbinterpeopleinterface.findAll();
     }
-//查询单个人员关系
+
+    //查询单个人员关系
     @GetMapping(value = "/getPeopleInterById/{id}")
     public TBINTERPEOPLE getPeopleInterById(@PathVariable(value = "id") String id){
         return tbinterpeopleinterface.findById(id).get();
     }
-//添加一个人员关系
+
+    //添加一个人员关系
     @PostMapping(value = "/addPeopleInter")
     public StatusMessage addPeopleInter(@RequestBody()TBINTERPEOPLE tbinterpeople){
         try {
@@ -246,6 +255,8 @@ public class BackendPageController {
         return new StatusMessage();
 
     }
+
+    //删除一个人员关系
     @PostMapping(value = "/deletePeopleInter/{id}")
     public StatusMessage deletePeopleInter(@PathVariable(value = "id")String id){
         try {
@@ -257,6 +268,9 @@ public class BackendPageController {
         return new StatusMessage();
 
     }
+
+
+
 
 
 

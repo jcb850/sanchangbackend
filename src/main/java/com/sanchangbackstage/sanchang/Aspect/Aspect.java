@@ -21,26 +21,26 @@ public class Aspect {
 
     }
 
-    @Before("point()")
-    public void test(JoinPoint joinPoint){
-        logger.info("111111111111111111111111");
-        ServletRequestAttributes attributes = (ServletRequestAttributes)RequestContextHolder.getRequestAttributes();
-        HttpServletRequest request = null;
-        if(attributes!=null){
-            request = attributes.getRequest();
-            logger.info("url={}",request.getRequestURI());
-            logger.info("method={}",request.getMethod());
-            logger.info("ip={}",request.getRemoteAddr());
-            logger.info("class_method={}",joinPoint.getSignature().getDeclaringTypeName());
-            logger.info("args={}",joinPoint.getArgs());
-
-        }
-    }
-    @After("point()")
-    public void ssss(){
-        logger.info("2222222222222222222222");
-
-
-    }
+//    @Before("point()")
+//    public void test(JoinPoint joinPoint){
+//        logger.info("111111111111111111111111");
+//        ServletRequestAttributes attributes = (ServletRequestAttributes)RequestContextHolder.getRequestAttributes();
+//        HttpServletRequest request = null;
+//        if(attributes!=null){
+//            request = attributes.getRequest();
+//            logger.info("url={}",request.getRequestURI());
+//            logger.info("method={}",request.getMethod());
+//            logger.info("ip={}",request.getRemoteAddr());
+//            logger.info("class_method={}",joinPoint.getSignature().getDeclaringTypeName());
+//            logger.info("args={}",joinPoint.getArgs());
+//
+//        }
+//    }
+//    @After("point()")
+//    public void ssss(){
+//        logger.info("2222222222222222222222");
+//
+//
+//    }
 
 }
