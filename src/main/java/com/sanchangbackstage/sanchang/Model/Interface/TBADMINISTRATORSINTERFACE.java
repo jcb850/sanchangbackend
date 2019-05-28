@@ -8,6 +8,6 @@ import java.util.List;
 
 public interface TBADMINISTRATORSINTERFACE extends JpaRepository<TBADMINISTRATORS,Integer> {
 
-//       List<TBADMINISTRATORS> findByNAME(String NAME);
+       List<TBADMINISTRATORS> findByName(String name);
 
 }

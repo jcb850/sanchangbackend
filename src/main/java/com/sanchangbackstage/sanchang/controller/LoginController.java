@@ -3,6 +3,7 @@ package com.sanchangbackstage.sanchang.controller;
 import com.sanchangbackstage.sanchang.Model.Interface.TBADMINISTRATORSINTERFACE;
 import com.sanchangbackstage.sanchang.Model.TBADMINISTRATORS;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -16,8 +17,16 @@ public class LoginController {
     public TBADMINISTRATORSINTERFACE tbadministratorsinterface;
 
     @PostMapping(value = "/login")
-    public List<TBADMINISTRATORS> login(@RequestParam(value = "name")String name){
+    public boolean login(@RequestParam(value = "username")String username, @RequestParam(value = "password") String password){
+
 //        return tbadministratorsinterface.findByNAME(name);
-        return null;
+            List list = tbadministratorsinterface.findByName(username);
+            TBADMINISTRATORS user;
+            user = (TBADMINISTRATORS) list.get(0);
+            if(user.getPASSWORD().equals(password)){
+                return true;
+            }else {
+                return false;
+            }
     }
 }

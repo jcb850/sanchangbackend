@@ -9,7 +9,7 @@ public class TBADMINISTRATORS {
 
     @Id
     private int ADMINID;
-    private String NAME;
+    private String name;
     private String PASSWORD;
 
     public TBADMINISTRATORS() {
@@ -24,11 +24,11 @@ public class TBADMINISTRATORS {
     }
 
     public String getNAME() {
-        return NAME;
+        return name;
     }
 
     public void setNAME(String NAME) {
-        this.NAME = NAME;
+        this.name = NAME;
     }
 
     public String getPASSWORD() {
