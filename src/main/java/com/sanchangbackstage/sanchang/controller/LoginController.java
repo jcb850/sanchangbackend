@@ -19,7 +19,6 @@ public class LoginController {
     @PostMapping(value = "/login")
     public boolean login(@RequestParam(value = "username")String username, @RequestParam(value = "password") String password){
 
-//        return tbadministratorsinterface.findByNAME(name);
             List list = tbadministratorsinterface.findByName(username);
             TBADMINISTRATORS user;
             user = (TBADMINISTRATORS) list.get(0);
