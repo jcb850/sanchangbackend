@@ -1,6 +1,5 @@
 package com.sanchangbackstage.sanchang.controller;
 
-import com.sanchangbackstage.sanchang.HTTPmessage.Message;
 import com.sanchangbackstage.sanchang.Model.*;
 import com.sanchangbackstage.sanchang.Model.Interface.TBADMINISTRATORSINTERFACE;
 import com.sanchangbackstage.sanchang.Model.Interface.TBINTERPEOPLEINTERFACE;
@@ -85,23 +84,32 @@ public class BackendPageController {
 
     //获得所有视频
     @GetMapping(value = "/getAllVideo")
-    public StatusMessage getAllVideo(){
-        StatusMessage statusMessage = new StatusMessage();
-        statusMessage.setData(tbvideoinfointerface.findAll());
-       return statusMessage;
+    public StatusMessage getAllVideo() throws Exception {
+        try {
+            return new StatusMessage(tbvideoinfointerface.findAll());
+        }catch (Exception e){
+            throw new Exception(e);
+        }
+
+
     }
     //获得指定id的视频
     @GetMapping(value = "/getVideoById/{id}")
-    public TBVIDEOINFO getVideoById(@PathVariable(value = "id") Integer id){
-        return tbvideoinfointerface.findById(id).get();
+    public StatusMessage getVideoById(@PathVariable(value = "id") Integer id) throws Exception {
+        try {
+            return new StatusMessage(tbvideoinfointerface.findById(id).get()) ;
+        }catch (Exception e){
+            throw new Exception(e);
+        }
+
     }
     //添加一条视频
     @PostMapping(value = "/uploadVideo")
-    public Message uploadVideo(@RequestParam(value = "file") MultipartFile file,
+    public StatusMessage uploadVideo(@RequestParam(value = "file") MultipartFile file,
                                @RequestParam(value = "videoContent")String videoContent,
                                @RequestParam(value = "videoName")String videoName
-                            ){
-        Message message = new Message();
+                            ) throws Exception {
+
         try {
             String path = this.videoUpload(file);
             TBVIDEOINFO tbvideoinfo = new TBVIDEOINFO();
@@ -112,34 +120,51 @@ public class BackendPageController {
             tbvideoinfo.setVIDEOPLAYSUM(0);
             tbvideoinfo.setVIDEODATE(new Date());
             tbvideoinfo.setVIDEOFLAG("视频");
-            message.message="视频添加成功！";
+            return new StatusMessage();
+
         }catch (Exception e){
-            message.message=e.toString();
+            throw new Exception(e);
         }
 
 
-        return message;
+
     }
     //删除视频
     @PostMapping(value = "/deleteVideo/{id}")
-    public void deleteVideo(@PathVariable(value = "id")int id){
-        TBVIDEOINFO tbvideoinfo = new TBVIDEOINFO();
-        tbvideoinfo.setVIDEOID(id);
-        tbvideoinfointerface.delete(tbvideoinfo);
+    public StatusMessage deleteVideo(@PathVariable(value = "id")int id) throws Exception {
+        try {
+            TBVIDEOINFO tbvideoinfo = new TBVIDEOINFO();
+            tbvideoinfo.setVIDEOID(id);
+            tbvideoinfointerface.delete(tbvideoinfo);
+            return new StatusMessage();
+        }catch (Exception e){
+            throw new Exception(e);
+        }
+
     }
 
 
 
     //获得所有文章
     @GetMapping(value = "/getAllTextAndImg")
-    public List<TBTEXTIMAGE> getAllText(){
-        return tbtextimageinterface.findAll();
+    public StatusMessage getAllText() throws Exception {
+        try {
+            return new StatusMessage(tbtextimageinterface.findAll());
+        }catch (Exception e){
+            throw new  Exception(e);
+        }
+
     }
 
     //获得指定id的文章
     @GetMapping(value = "/getTextAndImgById/{id}")
-    public TBTEXTIMAGE getTextAndImgById(@PathVariable(value = "id") int id){
-        return tbtextimageinterface.findById(id).get();
+    public StatusMessage getTextAndImgById(@PathVariable(value = "id") int id) throws Exception {
+        try {
+            return new StatusMessage(tbtextimageinterface.findById(id).get());
+        }catch (Exception e){
+            throw new Exception(e);
+        }
+
     }
 
     //添加文章
@@ -174,27 +199,39 @@ public class BackendPageController {
     }
     //删除图文
     @PostMapping(value = "/deleteTextAndImg/{id}")
-    public void deleteTextAndImg(@PathVariable(value = "id")int id){
-        TBTEXTIMAGE tbtextimage = new TBTEXTIMAGE();
-        tbtextimage.setTIID(id);
-        tbtextimageinterface.delete(tbtextimage);
+    public StatusMessage deleteTextAndImg(@PathVariable(value = "id")int id) throws Exception {
+        try {
+            TBTEXTIMAGE tbtextimage = new TBTEXTIMAGE();
+            tbtextimage.setTIID(id);
+            tbtextimageinterface.delete(tbtextimage);
+            return new StatusMessage();
+        }catch (Exception e){
+            throw new Exception(e);
+        }
+
     }
     //修改图文
     @PostMapping(value = "/updateTextAndImg")
-    public void updateTextAndImg(@RequestParam(value = "id")String id,
+    public StatusMessage updateTextAndImg(@RequestParam(value = "id")String id,
                                  @RequestParam(value = "name",required = false)String name,
                                  @RequestParam(value = "content",required = false)String content,
                                  @RequestParam(value = "praisesum",required = false)String praisesum,
-                                 @RequestParam(value = "visit",required = false)String visit){
-        TBTEXTIMAGE tbtextimageOld = this.getTextAndImgById(Integer.parseInt(id));
-        TBTEXTIMAGE tbtextimage = new TBTEXTIMAGE();
-        tbtextimage.setTIID(Integer.parseInt(id));
-        tbtextimage.setTINAME(name==""?null:name);
-        tbtextimage.setTICONTENT(content==""?null:content);
+                                 @RequestParam(value = "visit",required = false)String visit) throws Exception {
+        try {
+            TBTEXTIMAGE tbtextimageOld = tbtextimageinterface.findById(Integer.parseInt(id)).get();
+            TBTEXTIMAGE tbtextimage = new TBTEXTIMAGE();
+            tbtextimage.setTIID(Integer.parseInt(id));
+            tbtextimage.setTINAME(name==""?null:name);
+            tbtextimage.setTICONTENT(content==""?null:content);
 
-        tbtextimage.setTIPRAISESUM(praisesum==""?tbtextimageOld.getTIPRAISESUM():Integer.parseInt(praisesum));
-        tbtextimage.setTIVISITSUM(visit==""?tbtextimageOld.getTIVISITSUM():Integer.parseInt(visit));
-        tbtextimageinterface.save(tbtextimage);
+            tbtextimage.setTIPRAISESUM(praisesum==""?tbtextimageOld.getTIPRAISESUM():Integer.parseInt(praisesum));
+            tbtextimage.setTIVISITSUM(visit==""?tbtextimageOld.getTIVISITSUM():Integer.parseInt(visit));
+            tbtextimageinterface.save(tbtextimage);
+            return new StatusMessage();
+        }catch (Exception e){
+            throw new Exception(e);
+        }
+
 
     }
 
@@ -202,70 +239,99 @@ public class BackendPageController {
 
     //获得所有人员
     @GetMapping(value = "/getAllPeopleInfo")
-    public List<TBPEOPLEINFO>getallPeopleInfo(){
-        return tbpeopleinfointerface.findAll();
+    public StatusMessage getallPeopleInfo() throws Exception {
+        try {
+            return new StatusMessage(tbpeopleinfointerface.findAll());
+        }catch (Exception e){
+            throw new Exception(e);
+        }
+
     }
 
     //根据id获取人员
     @GetMapping(value = "/getPeoPleById/{id}")
-    public TBPEOPLEINFO getPeopleById(@PathVariable(value = "id") String id){
-        return tbpeopleinfointerface.findById(id).get();
+    public StatusMessage getPeopleById(@PathVariable(value = "id") String id) throws Exception {
+        try {
+            return new StatusMessage(tbpeopleinfointerface.findById(id).get());
+
+        }catch (Exception e){
+            throw new Exception(e);
+        }
     }
 
     //添加一个人员
     @PostMapping(value = "/addPeopleInfo")
-    public void addPeopleInfo(@RequestBody()TBPEOPLEINFO tbpeopleinfo){
+    public StatusMessage addPeopleInfo(@RequestBody()TBPEOPLEINFO tbpeopleinfo) throws Exception {
 
-        tbpeopleinfointerface.save(tbpeopleinfo);
+        try {
+            tbpeopleinfointerface.save(tbpeopleinfo);
+            return new StatusMessage();
+        }catch (Exception e){
+            throw new Exception(e);
+        }
 
     }
-
+    //删除一个人员信息
     @PostMapping(value = "/deletePeopleInfo/{id}")
-    public StatusMessage deletePeopleInfo(@PathVariable(value = "id")String id){
+    public StatusMessage deletePeopleInfo(@PathVariable(value = "id")String id) throws Exception {
         try {
             TBPEOPLEINFO tbpeopleinfo = new TBPEOPLEINFO();
             tbpeopleinfo.setID(id);
             tbpeopleinfointerface.delete(tbpeopleinfo);
+            return new StatusMessage();
         }catch (Exception e){
-            return new StatusMessage(e.toString());
+            throw new Exception(e);
         }
-        return new StatusMessage();
+
     }
 
     //获得所有关系
     @GetMapping(value = "/getAllPeopleInter")
-    public List<TBINTERPEOPLE> getAllPeopleInter(){
-        return tbinterpeopleinterface.findAll();
+    public StatusMessage getAllPeopleInter() throws Exception {
+        try {
+            return new StatusMessage(tbinterpeopleinterface.findAll());
+        }catch (Exception e){
+            throw new Exception(e);
+        }
+
     }
 
     //查询单个人员关系
     @GetMapping(value = "/getPeopleInterById/{id}")
-    public TBINTERPEOPLE getPeopleInterById(@PathVariable(value = "id") String id){
-        return tbinterpeopleinterface.findById(id).get();
+    public StatusMessage getPeopleInterById(@PathVariable(value = "id") String id) throws Exception {
+        try {
+            return new  StatusMessage(tbinterpeopleinterface.findById(id).get());
+        }catch (Exception e){
+            throw new Exception(e);
+        }
+
     }
 
     //添加一个人员关系
     @PostMapping(value = "/addPeopleInter")
-    public StatusMessage addPeopleInter(@RequestBody()TBINTERPEOPLE tbinterpeople){
+    public StatusMessage addPeopleInter(@RequestBody()TBINTERPEOPLE tbinterpeople) throws Exception {
         try {
             tbinterpeopleinterface.save(tbinterpeople);
+            return new StatusMessage();
+
         }catch (Exception e){
-            return new StatusMessage(e.toString());
+            throw new Exception(e);
         }
-        return new StatusMessage();
+
 
     }
 
     //删除一个人员关系
     @PostMapping(value = "/deletePeopleInter/{id}")
-    public StatusMessage deletePeopleInter(@PathVariable(value = "id")String id){
+    public StatusMessage deletePeopleInter(@PathVariable(value = "id")String id) throws Exception {
         try {
             TBINTERPEOPLE tbinterpeople = new TBINTERPEOPLE();
+            return new StatusMessage();
 
         }catch (Exception e){
-            return new StatusMessage(e.toString());
+            throw new Exception(e);
         }
-        return new StatusMessage();
+
 
     }
     //点赞接口
