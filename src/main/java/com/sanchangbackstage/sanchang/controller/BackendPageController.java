@@ -19,6 +19,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.Date;
 import java.util.List;
+import java.util.UUID;
 
 @RestController
 public class BackendPageController {
@@ -299,9 +300,11 @@ public class BackendPageController {
     public StatusMessage addPeopleInfo(@RequestBody()TBPEOPLEINFO tbpeopleinfo) throws Exception {
 
         try {
+            tbpeopleinfo.setID(UUID.randomUUID().toString().replace("-",""));
             tbpeopleinfointerface.save(tbpeopleinfo);
             return new StatusMessage();
         }catch (Exception e){
+
             throw new Exception(e);
         }
 
@@ -371,29 +374,29 @@ public class BackendPageController {
     }
     //点赞接口
     @GetMapping(value = "/praise/{id}")
-    public Boolean praiseMessage(@PathVariable(value = "id")String id){
+    public StatusMessage praiseMessage(@PathVariable(value = "id")String id) throws Exception {
         try{
             TBPEOPLEINFO tbpeople=tbpeopleinfointerface.findById(id).get();
             int quantty= tbpeople.getQUANTITY()+1;
             tbpeople.setQUANTITY(quantty);
             tbpeopleinfointerface.save(tbpeople);
-            return true;
+            return new StatusMessage();
         }catch (Exception e){
-           return  false;
+           throw new Exception(e);
 
         }
     }
     //浏览量接口
     @GetMapping(value = "/views/{id}")
-    public Boolean viewMessage (@PathVariable(value = "id")String id){
+    public StatusMessage viewMessage (@PathVariable(value = "id")String id) throws Exception {
         try {
             TBPEOPLEINFO tbpeople=tbpeopleinfointerface.findById(id).get();
             int quantty= tbpeople.getPAGEVIEW()+1;
             tbpeople.setPAGEVIEW(quantty);
             tbpeopleinfointerface.save(tbpeople);
-            return true;
+            return new StatusMessage();
         }catch (Exception e){
-            return  false;
+            throw new Exception(e);
         }
 
     }

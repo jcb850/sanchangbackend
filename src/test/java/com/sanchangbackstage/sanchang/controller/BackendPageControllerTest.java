@@ -4,6 +4,7 @@ import org.junit.Test;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
+import java.util.UUID;
 
 import static org.junit.Assert.*;
 
@@ -11,8 +12,9 @@ public class BackendPageControllerTest {
 
     @Test
     public void multipartConfigElement() {
-        BackendPageController backendPageController = new BackendPageController();
-        backendPageController.multipartConfigElement();
+//        BackendPageController backendPageController = new BackendPageController();
+//        backendPageController.multipartConfigElement();
+        System.out.println(UUID.randomUUID().toString().replace("-",""));
     }
 
 //    @Test
