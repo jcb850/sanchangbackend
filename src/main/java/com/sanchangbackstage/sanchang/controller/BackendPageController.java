@@ -369,7 +369,34 @@ public class BackendPageController {
 
 
     }
+    //点赞接口
+    @GetMapping(value = "/praise/{id}")
+    public Boolean praiseMessage(@PathVariable(value = "id")String id){
+        try{
+            TBPEOPLEINFO tbpeople=tbpeopleinfointerface.findById(id).get();
+            int quantty= tbpeople.getQUANTITY()+1;
+            tbpeople.setQUANTITY(quantty);
+            tbpeopleinfointerface.save(tbpeople);
+            return true;
+        }catch (Exception e){
+           return  false;
 
+        }
+    }
+    //浏览量接口
+    @GetMapping(value = "/views/{id}")
+    public Boolean viewMessage (@PathVariable(value = "id")String id){
+        try {
+            TBPEOPLEINFO tbpeople=tbpeopleinfointerface.findById(id).get();
+            int quantty= tbpeople.getPAGEVIEW()+1;
+            tbpeople.setPAGEVIEW(quantty);
+            tbpeopleinfointerface.save(tbpeople);
+            return true;
+        }catch (Exception e){
+            return  false;
+        }
+
+    }
 
 
 
