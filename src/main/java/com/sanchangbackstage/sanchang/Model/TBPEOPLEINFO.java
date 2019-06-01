@@ -12,54 +12,7 @@ public class TBPEOPLEINFO {
     }
 
     @Id
-<<<<<<< HEAD
-    private String  ID;
-    private String NAME;
-    private int EAG;
-    private String POSITION;
-    private String DECLARATION;
-    private int PAGEVIEW;
-    private int QUANTITY;
-    private Date UPTIME;
-    private String SEX;
-    private String ANIMAL;
-    private String NATION;
-    private String DIPLOMA;
-    private String CONSTELLATION;
-    private String BLOOD;
-    private String INCOME;
-    private Date FREETIME;
-    private String FRDPOSITIONONE;
-    private String FRDPOSITIONTWO;
-    private String FRDPOSITIONTHREE;
-    private String FREELIFE;
-    private String FOOD;
-    private String TOURIST;
-    private String MOVIE;
-    private String MUSIC;
-    private String INTERNET;
-    private int GREAG;
-    private String GRHEIGHT;
-    private String GRDIPLOMA;
-    private String GRINCOME;
-    private String GRFEATURE;
-    private String GRMARRY;
-    private String EMAIL;
-    private String WECHAT;
-    private String QQ;
-    private String TEL;
-    private String PHOHOONE;
-    private String PHOHOTWO;
-    private String PHOHOTHREE;
-    private String PHOHOFOUR;
-    private String PHOHOFIVE;
-    private String PHOHOSIX;
-    private String PHOHOSEVEN;
-    private String PHOHOEIGHT;
-    private String PHOHONINE;
-    private String PHOHOTEN;
-    private int COUNT;
-=======
+
     private String  id;
     private String name;
     private int eag;
@@ -106,7 +59,7 @@ public class TBPEOPLEINFO {
     private String photonine;
     private String phototen;
     private int count;
->>>>>>> c0abff89929925f9e61344a50b0a512f9eb204eb
+
 
     public String getId() {
         return id;

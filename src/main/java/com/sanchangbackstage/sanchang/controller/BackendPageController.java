@@ -299,12 +299,10 @@ public class BackendPageController {
 
     //添加一个人员
     @PostMapping(value = "/addPeopleInfo")
-<<<<<<< HEAD
+
 
     public StatusMessage addPeopleInfo(@RequestBody TBPEOPLEINFO tbpeopleinfo) throws Exception {
-=======
-    public StatusMessage addPeopleInfo(@RequestBody() TBPEOPLEINFO tbpeopleinfo) throws Exception {
->>>>>>> c0abff89929925f9e61344a50b0a512f9eb204eb
+
 
         try {
             tbpeopleinfo.setId(UUID.randomUUID().toString().replace("-",""));
