@@ -12,6 +12,7 @@ public class TBPEOPLEINFO {
     }
 
     @Id
+<<<<<<< HEAD
     private String  ID;
     private String NAME;
     private int EAG;
@@ -58,372 +59,420 @@ public class TBPEOPLEINFO {
     private String PHOHONINE;
     private String PHOHOTEN;
     private int COUNT;
+=======
+    private String  id;
+    private String name;
+    private int eag;
+    private String position;
+    private String declaration;
+    private int pageview;
+    private int quantity;
+    private Date uptime;
+    private String sex;
+    private String animal;
+    private String nation;
+    private String diploma;
+    private String constellation;
+    private String blood;
+    private String income;
+    private Date freetime;
+    private String frdpositionone;
+    private String frdpositiontwo;
+    private String frdpositionthree;
+    private String freelife;
+    private String food;
+    private String tourist;
+    private String movie;
+    private String music;
+    private String internet;
+    private int greag;
+    private String grheight;
+    private String grdiploma;
+    private String grincome;
+    private String grfeature;
+    private String grmarry;
+    private String email;
+    private String wechat;
+    private String qq;
+    private String tel;
+    private String photoone;
+    private String phototwo;
+    private String photothree;
+    private String photofour;
+    private String photofive;
+    private String photosix;
+    private String photoseven;
+    private String photoeight;
+    private String photonine;
+    private String phototen;
+    private int count;
+>>>>>>> c0abff89929925f9e61344a50b0a512f9eb204eb
 
-    public String getID() {
-        return ID;
+    public String getId() {
+        return id;
     }
 
-    public void setID(String ID) {
-        this.ID = ID;
+    public void setId(String id) {
+        this.id = id;
     }
 
-    public String getNAME() {
-        return NAME;
+    public String getName() {
+        return name;
     }
 
-    public void setNAME(String NAME) {
-        this.NAME = NAME;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public int getEAG() {
-        return EAG;
+    public int getEag() {
+        return eag;
     }
 
-    public void setEAG(int EAG) {
-        this.EAG = EAG;
+    public void setEag(int eag) {
+        this.eag = eag;
     }
 
-    public String getPOSITION() {
-        return POSITION;
+    public String getPosition() {
+        return position;
     }
 
-    public void setPOSITION(String POSITION) {
-        this.POSITION = POSITION;
+    public void setPosition(String position) {
+        this.position = position;
     }
 
-    public String getDECLARATION() {
-        return DECLARATION;
+    public String getDeclaration() {
+        return declaration;
     }
 
-    public void setDECLARATION(String DECLARATION) {
-        this.DECLARATION = DECLARATION;
+    public void setDeclaration(String declaration) {
+        this.declaration = declaration;
     }
 
-    public int getPAGEVIEW() {
-        return PAGEVIEW;
+    public int getPageview() {
+        return pageview;
     }
 
-    public void setPAGEVIEW(int PAGEVIEW) {
-        this.PAGEVIEW = PAGEVIEW;
+    public void setPageview(int pageview) {
+        this.pageview = pageview;
     }
 
-    public int getQUANTITY() {
-        return QUANTITY;
+    public int getQuantity() {
+        return quantity;
     }
 
-    public void setQUANTITY(int QUANTITY) {
-        this.QUANTITY = QUANTITY;
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
     }
 
-    public Date getUPTIME() {
-        return UPTIME;
+    public Date getUptime() {
+        return uptime;
     }
 
-    public void setUPTIME(Date UPTIME) {
-        this.UPTIME = UPTIME;
+    public void setUptime(Date uptime) {
+        this.uptime = uptime;
     }
 
-    public String getSEX() {
-        return SEX;
+    public String getSex() {
+        return sex;
     }
 
-    public void setSEX(String SEX) {
-        this.SEX = SEX;
+    public void setSex(String sex) {
+        this.sex = sex;
     }
 
-    public String getANIMAL() {
-        return ANIMAL;
+    public String getAnimal() {
+        return animal;
     }
 
-    public void setANIMAL(String ANIMAL) {
-        this.ANIMAL = ANIMAL;
+    public void setAnimal(String animal) {
+        this.animal = animal;
     }
 
-    public String getNATION() {
-        return NATION;
+    public String getNation() {
+        return nation;
     }
 
-    public void setNATION(String NATION) {
-        this.NATION = NATION;
+    public void setNation(String nation) {
+        this.nation = nation;
     }
 
-    public String getDIPLOMA() {
-        return DIPLOMA;
+    public String getDiploma() {
+        return diploma;
     }
 
-    public void setDIPLOMA(String DIPLOMA) {
-        this.DIPLOMA = DIPLOMA;
+    public void setDiploma(String diploma) {
+        this.diploma = diploma;
     }
 
-    public String getCONSTELLATION() {
-        return CONSTELLATION;
+    public String getConstellation() {
+        return constellation;
     }
 
-    public void setCONSTELLATION(String CONSTELLATION) {
-        this.CONSTELLATION = CONSTELLATION;
+    public void setConstellation(String constellation) {
+        this.constellation = constellation;
     }
 
-    public String getBLOOD() {
-        return BLOOD;
+    public String getBlood() {
+        return blood;
     }
 
-    public void setBLOOD(String BLOOD) {
-        this.BLOOD = BLOOD;
+    public void setBlood(String blood) {
+        this.blood = blood;
     }
 
-    public String getINCOME() {
-        return INCOME;
+    public String getIncome() {
+        return income;
     }
 
-    public void setINCOME(String INCOME) {
-        this.INCOME = INCOME;
+    public void setIncome(String income) {
+        this.income = income;
     }
 
-    public Date getFREETIME() {
-        return FREETIME;
+    public Date getFreetime() {
+        return freetime;
     }
 
-    public void setFREETIME(Date FREETIME) {
-        this.FREETIME = FREETIME;
+    public void setFreetime(Date freetime) {
+        this.freetime = freetime;
     }
 
-    public String getFRDPOSITIONONE() {
-        return FRDPOSITIONONE;
+    public String getFrdpositionone() {
+        return frdpositionone;
     }
 
-    public void setFRDPOSITIONONE(String FRDPOSITIONONE) {
-        this.FRDPOSITIONONE = FRDPOSITIONONE;
+    public void setFrdpositionone(String frdpositionone) {
+        this.frdpositionone = frdpositionone;
     }
 
-    public String getFRDPOSITIONTWO() {
-        return FRDPOSITIONTWO;
+    public String getFrdpositiontwo() {
+        return frdpositiontwo;
     }
 
-    public void setFRDPOSITIONTWO(String FRDPOSITIONTWO) {
-        this.FRDPOSITIONTWO = FRDPOSITIONTWO;
+    public void setFrdpositiontwo(String frdpositiontwo) {
+        this.frdpositiontwo = frdpositiontwo;
     }
 
-    public String getFRDPOSITIONTHREE() {
-        return FRDPOSITIONTHREE;
+    public String getFrdpositionthree() {
+        return frdpositionthree;
     }
 
-    public void setFRDPOSITIONTHREE(String FRDPOSITIONTHREE) {
-        this.FRDPOSITIONTHREE = FRDPOSITIONTHREE;
+    public void setFrdpositionthree(String frdpositionthree) {
+        this.frdpositionthree = frdpositionthree;
     }
 
-    public String getFREELIFE() {
-        return FREELIFE;
+    public String getFreelife() {
+        return freelife;
     }
 
-    public void setFREELIFE(String FREELIFE) {
-        this.FREELIFE = FREELIFE;
+    public void setFreelife(String freelife) {
+        this.freelife = freelife;
     }
 
-    public String getFOOD() {
-        return FOOD;
+    public String getFood() {
+        return food;
     }
 
-    public void setFOOD(String FOOD) {
-        this.FOOD = FOOD;
+    public void setFood(String food) {
+        this.food = food;
     }
 
-    public String getTOURIST() {
-        return TOURIST;
+    public String getTourist() {
+        return tourist;
     }
 
-    public void setTOURIST(String TOURIST) {
-        this.TOURIST = TOURIST;
+    public void setTourist(String tourist) {
+        this.tourist = tourist;
     }
 
-    public String getMOVIE() {
-        return MOVIE;
+    public String getMovie() {
+        return movie;
     }
 
-    public void setMOVIE(String MOVIE) {
-        this.MOVIE = MOVIE;
+    public void setMovie(String movie) {
+        this.movie = movie;
     }
 
-    public String getMUSIC() {
-        return MUSIC;
+    public String getMusic() {
+        return music;
     }
 
-    public void setMUSIC(String MUSIC) {
-        this.MUSIC = MUSIC;
+    public void setMusic(String music) {
+        this.music = music;
     }
 
-    public String getINTERNET() {
-        return INTERNET;
+    public String getInternet() {
+        return internet;
     }
 
-    public void setINTERNET(String INTERNET) {
-        this.INTERNET = INTERNET;
+    public void setInternet(String internet) {
+        this.internet = internet;
     }
 
-    public int getGREAG() {
-        return GREAG;
+    public int getGreag() {
+        return greag;
     }
 
-    public void setGREAG(int GREAG) {
-        this.GREAG = GREAG;
+    public void setGreag(int greag) {
+        this.greag = greag;
     }
 
-    public String getGRHEIGHT() {
-        return GRHEIGHT;
+    public String getGrheight() {
+        return grheight;
     }
 
-    public void setGRHEIGHT(String GRHEIGHT) {
-        this.GRHEIGHT = GRHEIGHT;
+    public void setGrheight(String grheight) {
+        this.grheight = grheight;
     }
 
-    public String getGRDIPLOMA() {
-        return GRDIPLOMA;
+    public String getGrdiploma() {
+        return grdiploma;
     }
 
-    public void setGRDIPLOMA(String GRDIPLOMA) {
-        this.GRDIPLOMA = GRDIPLOMA;
+    public void setGrdiploma(String grdiploma) {
+        this.grdiploma = grdiploma;
     }
 
-    public String getGRINCOME() {
-        return GRINCOME;
+    public String getGrincome() {
+        return grincome;
     }
 
-    public void setGRINCOME(String GRINCOME) {
-        this.GRINCOME = GRINCOME;
+    public void setGrincome(String grincome) {
+        this.grincome = grincome;
     }
 
-    public String getGRFEATURE() {
-        return GRFEATURE;
+    public String getGrfeature() {
+        return grfeature;
     }
 
-    public void setGRFEATURE(String GRFEATURE) {
-        this.GRFEATURE = GRFEATURE;
+    public void setGrfeature(String grfeature) {
+        this.grfeature = grfeature;
     }
 
-    public String getGRMARRY() {
-        return GRMARRY;
+    public String getGrmarry() {
+        return grmarry;
     }
 
-    public void setGRMARRY(String GRMARRY) {
-        this.GRMARRY = GRMARRY;
+    public void setGrmarry(String grmarry) {
+        this.grmarry = grmarry;
     }
 
-    public String getEMAIL() {
-        return EMAIL;
+    public String getEmail() {
+        return email;
     }
 
-    public void setEMAIL(String EMAIL) {
-        this.EMAIL = EMAIL;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
-    public String getWECHAT() {
-        return WECHAT;
+    public String getWechat() {
+        return wechat;
     }
 
-    public void setWECHAT(String WECHAT) {
-        this.WECHAT = WECHAT;
+    public void setWechat(String wechat) {
+        this.wechat = wechat;
     }
 
-    public String getQQ() {
-        return QQ;
+    public String getQq() {
+        return qq;
     }
 
-    public void setQQ(String QQ) {
-        this.QQ = QQ;
+    public void setQq(String qq) {
+        this.qq = qq;
     }
 
-    public String getTEL() {
-        return TEL;
+    public String getTel() {
+        return tel;
     }
 
-    public void setTEL(String TEL) {
-        this.TEL = TEL;
+    public void setTel(String tel) {
+        this.tel = tel;
     }
 
-    public String getPHOHOONE() {
-        return PHOHOONE;
+    public String getPhotoone() {
+        return photoone;
     }
 
-    public void setPHOHOONE(String PHOHOONE) {
-        this.PHOHOONE = PHOHOONE;
+    public void setPhotoone(String photoone) {
+        this.photoone = photoone;
     }
 
-    public String getPHOHOTWO() {
-        return PHOHOTWO;
+    public String getPhototwo() {
+        return phototwo;
     }
 
-    public void setPHOHOTWO(String PHOHOTWO) {
-        this.PHOHOTWO = PHOHOTWO;
+    public void setPhototwo(String phototwo) {
+        this.phototwo = phototwo;
     }
 
-    public String getPHOHOTHREE() {
-        return PHOHOTHREE;
+    public String getPhotothree() {
+        return photothree;
     }
 
-    public void setPHOHOTHREE(String PHOHOTHREE) {
-        this.PHOHOTHREE = PHOHOTHREE;
+    public void setPhotothree(String photothree) {
+        this.photothree = photothree;
     }
 
-    public String getPHOHOFOUR() {
-        return PHOHOFOUR;
+    public String getPhotofour() {
+        return photofour;
     }
 
-    public void setPHOHOFOUR(String PHOHOFOUR) {
-        this.PHOHOFOUR = PHOHOFOUR;
+    public void setPhotofour(String photofour) {
+        this.photofour = photofour;
     }
 
-    public String getPHOHOFIVE() {
-        return PHOHOFIVE;
+    public String getPhotofive() {
+        return photofive;
     }
 
-    public void setPHOHOFIVE(String PHOHOFIVE) {
-        this.PHOHOFIVE = PHOHOFIVE;
+    public void setPhotofive(String photofive) {
+        this.photofive = photofive;
     }
 
-    public String getPHOHOSIX() {
-        return PHOHOSIX;
+    public String getPhotosix() {
+        return photosix;
     }
 
-    public void setPHOHOSIX(String PHOHOSIX) {
-        this.PHOHOSIX = PHOHOSIX;
+    public void setPhotosix(String photosix) {
+        this.photosix = photosix;
     }
 
-    public String getPHOHOSEVEN() {
-        return PHOHOSEVEN;
+    public String getPhotoseven() {
+        return photoseven;
     }
 
-    public void setPHOHOSEVEN(String PHOHOSEVEN) {
-        this.PHOHOSEVEN = PHOHOSEVEN;
+    public void setPhotoseven(String photoseven) {
+        this.photoseven = photoseven;
     }
 
-    public String getPHOHOEIGHT() {
-        return PHOHOEIGHT;
+    public String getPhotoeight() {
+        return photoeight;
     }
 
-    public void setPHOHOEIGHT(String PHOHOEIGHT) {
-        this.PHOHOEIGHT = PHOHOEIGHT;
+    public void setPhotoeight(String photoeight) {
+        this.photoeight = photoeight;
     }
 
-    public String getPHOHONINE() {
-        return PHOHONINE;
+    public String getPhotonine() {
+        return photonine;
     }
 
-    public void setPHOHONINE(String PHOHONINE) {
-        this.PHOHONINE = PHOHONINE;
+    public void setPhotonine(String photonine) {
+        this.photonine = photonine;
     }
 
-    public String getPHOHOTEN() {
-        return PHOHOTEN;
+    public String getPhototen() {
+        return phototen;
     }
 
-    public void setPHOHOTEN(String PHOHOTEN) {
-        this.PHOHOTEN = PHOHOTEN;
+    public void setPhototen(String phototen) {
+        this.phototen = phototen;
     }
 
-    public int getCOUNT() {
-        return COUNT;
+    public int getCount() {
+        return count;
     }
 
-    public void setCOUNT(int COUNT) {
-        this.COUNT = COUNT;
+    public void setCount(int count) {
+        this.count = count;
     }
 }
