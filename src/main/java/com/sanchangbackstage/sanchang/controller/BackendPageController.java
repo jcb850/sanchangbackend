@@ -256,14 +256,11 @@ public class BackendPageController {
                                  @RequestParam(value = "visit",required = false)String visit) throws Exception {
         try {
             TBTEXTIMAGE tbtextimageOld = tbtextimageinterface.findById(Integer.parseInt(id)).get();
-            TBTEXTIMAGE tbtextimage = new TBTEXTIMAGE();
-            tbtextimage.setTIID(Integer.parseInt(id));
-            tbtextimage.setTINAME(name==""?null:name);
-            tbtextimage.setTICONTENT(content==""?null:content);
-
-            tbtextimage.setTIPRAISESUM(praisesum==""?tbtextimageOld.getTIPRAISESUM():Integer.parseInt(praisesum));
-            tbtextimage.setTIVISITSUM(visit==""?tbtextimageOld.getTIVISITSUM():Integer.parseInt(visit));
-            tbtextimageinterface.save(tbtextimage);
+            tbtextimageOld.setTINAME(name==""?tbtextimageOld.getTINAME():name);
+            tbtextimageOld.setTICONTENT(content==""?tbtextimageOld.getTICONTENT():content);
+            tbtextimageOld.setTIPRAISESUM(praisesum==""?tbtextimageOld.getTIPRAISESUM():Integer.parseInt(praisesum));
+            tbtextimageOld.setTIVISITSUM(visit==""?tbtextimageOld.getTIVISITSUM():Integer.parseInt(visit));
+            tbtextimageinterface.save(tbtextimageOld);
             return new StatusMessage();
         }catch (Exception e){
             throw new Exception(e);
