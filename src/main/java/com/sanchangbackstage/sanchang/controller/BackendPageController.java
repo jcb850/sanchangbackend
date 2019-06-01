@@ -1,9 +1,12 @@
 package com.sanchangbackstage.sanchang.controller;
 
+import com.sanchangbackstage.sanchang.Aspect.Aspect;
 import com.sanchangbackstage.sanchang.Model.*;
 import com.sanchangbackstage.sanchang.Model.Interface.TBADMINISTRATORSINTERFACE;
 import com.sanchangbackstage.sanchang.Model.Interface.TBINTERPEOPLEINTERFACE;
 import com.sanchangbackstage.sanchang.StatusMessage.StatusMessage;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.web.servlet.MultipartConfigFactory;
@@ -31,7 +34,7 @@ public class BackendPageController {
         return factory.createMultipartConfig();
     }
 
-
+    private final static Logger logger = LoggerFactory.getLogger(Aspect.class);
 
     @Value(value = "${baseUrl}")
     public String baseUrl;
@@ -77,7 +80,7 @@ public class BackendPageController {
                     return "上传出现错误";
                 }
             }
-            return path;
+            return file.getOriginalFilename();
         }
     }
 
@@ -141,6 +144,22 @@ public class BackendPageController {
             throw new Exception(e);
         }
 
+    }
+    //删除多个视频
+    @PostMapping(value = "/deleteMultipleVideo")
+    public StatusMessage deleteMultipleVideo(@RequestParam(value = "idList") int[] idList) throws Exception {
+        try {
+//            logger.info("16551561");
+            for (int i : idList){
+
+                TBVIDEOINFO tbvideoinfo = new TBVIDEOINFO();
+                tbvideoinfo.setVIDEOID(i);
+                tbvideoinfointerface.delete(tbvideoinfo);
+            }
+            return new StatusMessage();
+        }catch (Exception e){
+            throw new Exception(e);
+        }
     }
 
 
@@ -210,6 +229,22 @@ public class BackendPageController {
         }
 
     }
+    //删除多个图文
+    @PostMapping(value = "/deleteMultipleTextAndImg")
+    public StatusMessage deleteMultipleTextAndImg(@RequestParam(value = "idList") int[] idList) throws Exception {
+        try {
+            for (int id : idList){
+                TBTEXTIMAGE tbtextimage = new TBTEXTIMAGE();
+                tbtextimage.setTIID(id);
+                tbtextimageinterface.delete(tbtextimage);
+            }
+
+            return  new StatusMessage();
+        }catch (Exception e){
+            throw new Exception(e);
+        }
+    }
+
     //修改图文
     @PostMapping(value = "/updateTextAndImg")
     public StatusMessage updateTextAndImg(@RequestParam(value = "id")String id,

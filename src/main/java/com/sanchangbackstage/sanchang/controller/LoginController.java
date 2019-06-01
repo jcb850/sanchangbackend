@@ -20,7 +20,9 @@ public class LoginController {
     public boolean login(@RequestParam(value = "username")String username, @RequestParam(value = "password") String password){
 
             List list = tbadministratorsinterface.findByName(username);
-            TBADMINISTRATORS user;
+            if(list.size() ==0)return false;
+
+        TBADMINISTRATORS user;
             user = (TBADMINISTRATORS) list.get(0);
             if(user.getPASSWORD().equals(password)){
                 return true;
