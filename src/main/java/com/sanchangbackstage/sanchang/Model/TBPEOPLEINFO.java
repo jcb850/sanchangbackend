@@ -12,7 +12,6 @@ public class TBPEOPLEINFO {
     }
 
     @Id
-    @GeneratedValue
     private String  ID;
     private String NAME;
     private int EAG;

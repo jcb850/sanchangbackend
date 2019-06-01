@@ -17,9 +17,11 @@ import org.springframework.web.multipart.MultipartFile;
 import javax.servlet.MultipartConfigElement;
 import java.io.File;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 import java.util.UUID;
+import java.util.logging.SimpleFormatter;
 
 @RestController
 public class BackendPageController {
@@ -64,13 +66,14 @@ public class BackendPageController {
 //        return url;
 //    }
 
-    @PostMapping(value = "/video")
+    @PostMapping(value = "/uploadfile")
     public String videoUpload(@RequestParam(value = "file") MultipartFile file){
 
         if (file.isEmpty()){
             return "上传了空文件";
         }else {
-            String path = baseUrl+file.getOriginalFilename();
+            SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd/HH/mm/ss");//
+            String path = baseUrl+df.toString()+file.getOriginalFilename();
             File desFile = new File(path);
             if (!desFile.getParentFile().exists()){
                 desFile.mkdir();
@@ -84,6 +87,7 @@ public class BackendPageController {
             return file.getOriginalFilename();
         }
     }
+
 
 
     //获得所有视频
@@ -297,7 +301,8 @@ public class BackendPageController {
 
     //添加一个人员
     @PostMapping(value = "/addPeopleInfo")
-    public StatusMessage addPeopleInfo(@RequestBody()TBPEOPLEINFO tbpeopleinfo) throws Exception {
+
+    public StatusMessage addPeopleInfo(@RequestBody TBPEOPLEINFO tbpeopleinfo) throws Exception {
 
         try {
             tbpeopleinfo.setID(UUID.randomUUID().toString().replace("-",""));
@@ -372,7 +377,7 @@ public class BackendPageController {
 
 
     }
-    //点赞接口
+    //相亲点赞接口
     @GetMapping(value = "/praise/{id}")
     public StatusMessage praiseMessage(@PathVariable(value = "id")String id) throws Exception {
         try{
@@ -386,7 +391,7 @@ public class BackendPageController {
 
         }
     }
-    //浏览量接口
+    //相亲浏览量接口
     @GetMapping(value = "/views/{id}")
     public StatusMessage viewMessage (@PathVariable(value = "id")String id) throws Exception {
         try {
@@ -400,8 +405,32 @@ public class BackendPageController {
         }
 
     }
-
-
+    //视频点赞接口
+    @GetMapping(value = "/praiseVideo/{id}")
+    public StatusMessage praiseVideo(@PathVariable(value = "id")int id) throws Exception {
+        try {
+            TBVIDEOINFO tbviode=tbvideoinfointerface.findById(id).get();
+            int parse=tbviode.getPRAISESUM()+1;
+            tbviode.setPRAISESUM(parse);
+            tbvideoinfointerface.save(tbviode);
+            return  new StatusMessage();
+        }catch (Exception e){
+            throw new Exception(e);
+        }
+    }
+    //视频浏览量接口
+    @GetMapping(value = "/viewsVideo/{id}")
+    public StatusMessage viewsVideo(@PathVariable(value = "id")int id)throws Exception{
+        try {
+            TBVIDEOINFO tbvideo=tbvideoinfointerface.findById(id).get();
+            int playsum=tbvideo.getVIDEOPLAYSUM()+1;
+            tbvideo.setVIDEOPLAYSUM(playsum);
+            tbvideoinfointerface.save(tbvideo);
+            return  new StatusMessage();
+        }catch (Exception e) {
+            throw new Exception(e);
+        }
+    }
 
 
 
