@@ -1,1 +1,3 @@
 baseUrl: D:\\FileOutputDir\\
+server:
+  port: 8080

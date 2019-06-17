@@ -3,7 +3,9 @@ package com.sanchangbackstage.sanchang.StatusMessage;
 public enum resultEnum {
     success(),
     error_outside(400,"请求错误"),
-    error_inside(500,"接口内部错误"),;
+    error_inside(500,"接口内部错误"),
+    error_data(401,"没有这个数据");
+
 
 
     private int code;

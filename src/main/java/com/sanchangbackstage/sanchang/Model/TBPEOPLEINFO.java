@@ -11,6 +11,55 @@ public class TBPEOPLEINFO {
     public TBPEOPLEINFO() {
     }
 
+//    public TBPEOPLEINFO(TBPEOPLEINFO tbpeopleinfo) {
+//        this.id = tbpeopleinfo.id==""?this.id:tbpeopleinfo.id;
+//        this.name = tbpeopleinfo.name==""?this.id:tbpeopleinfo.id;
+//        this.eag = tbpeopleinfo.eag==""?this.id:tbpeopleinfo.id;
+//        this.position = tbpeopleinfo.position==""?this.id:tbpeopleinfo.id;
+//        this.declaration = tbpeopleinfo.declaration==""?this.id:tbpeopleinfo.id;
+//        this.pageview = tbpeopleinfo.pageview==""?this.id:tbpeopleinfo.id;
+//        this.quantity = tbpeopleinfo.quantity==""?this.id:tbpeopleinfo.id;
+//        this.uptime = tbpeopleinfo.uptime==""?this.id:tbpeopleinfo.id;
+//        this.sex = tbpeopleinfo.sex==""?this.id:tbpeopleinfo.id;
+//        this.animal = tbpeopleinfo.animal==""?this.id:tbpeopleinfo.id;
+//        this.nation = tbpeopleinfo.nation==""?this.id:tbpeopleinfo.id;
+//        this.diploma = tbpeopleinfo.diploma==""?this.id:tbpeopleinfo.id;
+//        this.constellation = tbpeopleinfo.constellation==""?this.id:tbpeopleinfo.id;
+//        this.blood = tbpeopleinfo.blood==""?this.id:tbpeopleinfo.id;
+//        this.income = tbpeopleinfo.income==""?this.id:tbpeopleinfo.id;
+//        this.freetime = tbpeopleinfo.freetime==""?this.id:tbpeopleinfo.id;
+//        this.frdpositionone = tbpeopleinfo.frdpositionone==""?this.id:tbpeopleinfo.id;
+//        this.frdpositiontwo = tbpeopleinfo.frdpositiontwo==""?this.id:tbpeopleinfo.id;
+//        this.frdpositionthree = tbpeopleinfo.frdpositionthree==""?this.id:tbpeopleinfo.id;
+//        this.freelife = tbpeopleinfo.freelife==""?this.id:tbpeopleinfo.id;
+//        this.food = tbpeopleinfo.food==""?this.id:tbpeopleinfo.id;
+//        this.tourist = tbpeopleinfo.tourist==""?this.id:tbpeopleinfo.id;
+//        this.movie = tbpeopleinfo.movie==""?this.id:tbpeopleinfo.id;
+//        this.music = tbpeopleinfo.music==""?this.id:tbpeopleinfo.id;
+//        this.internet = tbpeopleinfo.internet==""?this.id:tbpeopleinfo.id;
+//        this.greag = tbpeopleinfo.greag==?this.greag:tbpeopleinfo.greag;
+//        this.grheight = tbpeopleinfo.grheight==""?this.grheight:tbpeopleinfo.grheight;
+//        this.grdiploma = tbpeopleinfo.grdiploma==""?this.grdiploma:tbpeopleinfo.grdiploma;
+//        this.grincome = tbpeopleinfo.grincome==""?this.grincome:tbpeopleinfo.grincome;
+//        this.grfeature = tbpeopleinfo.grfeature==""?this.grfeature:tbpeopleinfo.grfeature;
+//        this.grmarry = tbpeopleinfo.grmarry==""?this.grmarry:tbpeopleinfo.grmarry;
+//        this.email = tbpeopleinfo.email==""?this.email:tbpeopleinfo.email;
+//        this.wechat = tbpeopleinfo.wechat==""?this.wechat:tbpeopleinfo.wechat;
+//        this.qq = tbpeopleinfo.qq==""?this.qq:tbpeopleinfo.qq;
+//        this.tel = tbpeopleinfo.tel==""?this.tel:tbpeopleinfo.tel;
+//        this.photoone = tbpeopleinfo.photoone==""?this.photoone:tbpeopleinfo.photoone;
+//        this.phototwo = tbpeopleinfo.phototwo==""?this.phototwo:tbpeopleinfo.phototwo;
+//        this.photothree = tbpeopleinfo.photothree==""?this.photothree:tbpeopleinfo.photothree;
+//        this.photofour = tbpeopleinfo.photofour==""?this.photofour:tbpeopleinfo.photofour;
+//        this.photofive = tbpeopleinfo.photofive==""?this.photofive:tbpeopleinfo.photofive;
+//        this.photosix = tbpeopleinfo.photosix==""?this.photosix:tbpeopleinfo.photosix;
+//        this.photoseven = tbpeopleinfo.photoseven==""?this.photoseven:tbpeopleinfo.photoseven;
+//        this.photoeight = tbpeopleinfo.photoeight==""?this.photoeight:tbpeopleinfo.photoeight;
+//        this.photonine = tbpeopleinfo.photonine==""?this.photonine:tbpeopleinfo.photonine;
+//        this.phototen = tbpeopleinfo.phototen==""?this.phototen:tbpeopleinfo.phototen;
+//        this.count = tbpeopleinfo.count==""?this.count:tbpeopleinfo.count;
+//    }
+
     @Id
 
     private String  id;

@@ -21,8 +21,7 @@ public class LoginController {
 
             List list = tbadministratorsinterface.findByName(username);
             if(list.size() ==0)return false;
-
-        TBADMINISTRATORS user;
+            TBADMINISTRATORS user;
             user = (TBADMINISTRATORS) list.get(0);
             if(user.getPASSWORD().equals(password)){
                 return true;

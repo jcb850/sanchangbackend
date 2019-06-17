@@ -7,107 +7,107 @@ import javax.persistence.Id;
 public class TBINTERPEOPLE {
 
     @Id
-    private String ID;
-    private String STARNAME;
-    private String STARPOSITION;
-    private String STARWECHAT;
-    private String STARQQ;
-    private String STARTEL;
-    private String EMAIL;
-    private String WECHAT;
-    private String QQ;
-    private String TEL;
-    private String NAME;
+    private String id;
+    private String starname;
+    private String starposition;
+    private String starwechat;
+    private String starqq;
+    private String startel;
+    private String email;
+    private String wecchat;
+    private String qq;
+    private String tel;
+    private String name;
 
     public TBINTERPEOPLE() {
 
     }
 
-    public String getID() {
-        return ID;
+    public String getId() {
+        return id;
     }
 
-    public void setID(String ID) {
-        this.ID = ID;
+    public void setId(String id) {
+        this.id = id;
     }
 
-    public String getSTARNAME() {
-        return STARNAME;
+    public String getStarname() {
+        return starname;
     }
 
-    public void setSTARNAME(String STARNAME) {
-        this.STARNAME = STARNAME;
+    public void setStarname(String starname) {
+        this.starname = starname;
     }
 
-    public String getSTARPOSITION() {
-        return STARPOSITION;
+    public String getStarposition() {
+        return starposition;
     }
 
-    public void setSTARPOSITION(String STARPOSITION) {
-        this.STARPOSITION = STARPOSITION;
+    public void setStarposition(String starposition) {
+        this.starposition = starposition;
     }
 
-    public String getSTARWECHAT() {
-        return STARWECHAT;
+    public String getStarwechat() {
+        return starwechat;
     }
 
-    public void setSTARWECHAT(String STARWECHAT) {
-        this.STARWECHAT = STARWECHAT;
+    public void setStarwechat(String starwechat) {
+        this.starwechat = starwechat;
     }
 
-    public String getSTARQQ() {
-        return STARQQ;
+    public String getStarqq() {
+        return starqq;
     }
 
-    public void setSTARQQ(String STARQQ) {
-        this.STARQQ = STARQQ;
+    public void setStarqq(String starqq) {
+        this.starqq = starqq;
     }
 
-    public String getSTARTEL() {
-        return STARTEL;
+    public String getStartel() {
+        return startel;
     }
 
-    public void setSTARTEL(String STARTEL) {
-        this.STARTEL = STARTEL;
+    public void setStartel(String startel) {
+        this.startel = startel;
     }
 
-    public String getEMAIL() {
-        return EMAIL;
+    public String getEmail() {
+        return email;
     }
 
-    public void setEMAIL(String EMAIL) {
-        this.EMAIL = EMAIL;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
-    public String getWECHAT() {
-        return WECHAT;
+    public String getWecchat() {
+        return wecchat;
     }
 
-    public void setWECHAT(String WECHAT) {
-        this.WECHAT = WECHAT;
+    public void setWecchat(String wecchat) {
+        this.wecchat = wecchat;
     }
 
-    public String getQQ() {
-        return QQ;
+    public String getQq() {
+        return qq;
     }
 
-    public void setQQ(String QQ) {
-        this.QQ = QQ;
+    public void setQq(String qq) {
+        this.qq = qq;
     }
 
-    public String getTEL() {
-        return TEL;
+    public String getTel() {
+        return tel;
     }
 
-    public void setTEL(String TEL) {
-        this.TEL = TEL;
+    public void setTel(String tel) {
+        this.tel = tel;
     }
 
-    public String getNAME() {
-        return NAME;
+    public String getName() {
+        return name;
     }
 
-    public void setNAME(String NAME) {
-        this.NAME = NAME;
+    public void setName(String name) {
+        this.name = name;
     }
 }

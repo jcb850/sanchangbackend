@@ -5,6 +5,7 @@ import com.sanchangbackstage.sanchang.Model.*;
 import com.sanchangbackstage.sanchang.Model.Interface.TBADMINISTRATORSINTERFACE;
 import com.sanchangbackstage.sanchang.Model.Interface.TBINTERPEOPLEINTERFACE;
 import com.sanchangbackstage.sanchang.StatusMessage.StatusMessage;
+import com.sanchangbackstage.sanchang.handle.WithoutDataExecption;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -299,8 +300,6 @@ public class BackendPageController {
 
     //添加一个人员
     @PostMapping(value = "/addPeopleInfo")
-
-
     public StatusMessage addPeopleInfo(@RequestBody TBPEOPLEINFO tbpeopleinfo) throws Exception {
 
 
@@ -314,7 +313,20 @@ public class BackendPageController {
 
             throw new Exception(e);
         }
-
+    }
+    //修改人员
+    @PostMapping(value = "/updatePeopleInfo")
+    public StatusMessage updatePeopleInfo(@RequestBody TBPEOPLEINFO tbpeopleinfo) throws Exception {
+        try {
+            TBPEOPLEINFO tbpeopleinfor= tbpeopleinfointerface.findById(tbpeopleinfo.getId()).get();
+            if(tbpeopleinfor==null){
+                throw new WithoutDataExecption();
+            }
+            tbpeopleinfointerface.save(tbpeopleinfo);
+            return new StatusMessage();
+        }catch (Exception e){
+            throw new Exception(e);
+        }
     }
     //删除一个人员信息
     @PostMapping(value = "/deletePeopleInfo/{id}")
@@ -328,6 +340,21 @@ public class BackendPageController {
             throw new Exception(e);
         }
 
+    }
+
+    //删除多个人员
+    @PostMapping(value = "/deleteMultiplePeopleInfo")
+    public StatusMessage deleteMultiplePeopleInfo(@RequestParam(value = "idList")String[] idList) throws Exception {
+        try {
+            for (String item : idList){
+                TBPEOPLEINFO tbpeopleinfo = new TBPEOPLEINFO();
+                tbpeopleinfo.setId(item);
+                tbpeopleinfointerface.delete(tbpeopleinfo);
+            }
+            return new StatusMessage();
+        }catch (Exception e){
+            throw new Exception(e);
+        }
     }
 
     //获得所有关系
@@ -354,8 +381,9 @@ public class BackendPageController {
 
     //添加一个人员关系
     @PostMapping(value = "/addPeopleInter")
-    public StatusMessage addPeopleInter(@RequestBody()TBINTERPEOPLE tbinterpeople) throws Exception {
+    public StatusMessage addPeopleInter(@RequestBody TBINTERPEOPLE tbinterpeople) throws Exception {
         try {
+            tbinterpeople.setId(UUID.randomUUID().toString().replace("-",""));
             tbinterpeopleinterface.save(tbinterpeople);
             return new StatusMessage();
 
@@ -371,6 +399,7 @@ public class BackendPageController {
     public StatusMessage deletePeopleInter(@PathVariable(value = "id")String id) throws Exception {
         try {
             TBINTERPEOPLE tbinterpeople = new TBINTERPEOPLE();
+            tbinterpeopleinterface.delete(tbinterpeople);
             return new StatusMessage();
 
         }catch (Exception e){

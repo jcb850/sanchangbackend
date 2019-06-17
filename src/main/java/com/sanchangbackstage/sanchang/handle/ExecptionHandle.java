@@ -19,6 +19,15 @@ public class ExecptionHandle {
         logger.error("参数错误："+e.toString());
         return new StatusMessage(resultEnum.error_outside.getCode(),resultEnum.error_outside.getMessage());
     }
+
+    @ExceptionHandler(value = WithoutDataExecption.class)
+    @ResponseBody
+    public StatusMessage Datahandle(Exception e){
+        logger.error("数据库中没有数据："+e.toString());
+        return new StatusMessage(resultEnum.error_data.getCode(),resultEnum.error_data.getMessage());
+    }
+
+
     @ExceptionHandler(value = Exception.class)
     @ResponseBody
     public StatusMessage handle(Exception e){
